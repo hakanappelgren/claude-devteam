@@ -1,0 +1,12 @@
+{
+  "name": "hakan-devteam",
+  "owner": { "name": "Håkan Appelgren" },
+  "description": "Håkan's private Claude Code plugins.",
+  "plugins": [
+    {
+      "name": "devteam",
+      "source": "./plugins/devteam",
+      "description": "Håkan's dev team: lead + specialist agents and the /feature → /review → /close-feature process."
+    }
+  ]
+}
