@@ -127,7 +127,7 @@ Dispatch the **builder agent**. Its inputs — nothing else needed:
 - `docs/design/[name].html`
 - `features/[name]/research-brief.md` (if it exists)
 
-The builder follows TDD rules and build order defined in `${CLAUDE_PLUGIN_ROOT}/agents/builder.md`. It reports back: criteria coverage, test results, deviations, deferred items.
+The builder follows TDD rules and build order defined in `${CLAUDE_PLUGIN_ROOT}/agents/builder.md`, and ends with a **finish loop**: it keeps going until `npm run verify` passes and every acceptance criterion is proven, for at most 10 rounds. This is why acceptance criteria must be testable — the loop is only as good as its done-condition. It reports back: criteria coverage, test results, loop rounds, deviations, deferred items.
 
 If the builder escalates (ambiguous plan, missing input, needed dependency), the lead resolves it — with Håkan if it changes scope or architecture. Deferred tests in the report → dispatch the **test-writer agent** before review.
 

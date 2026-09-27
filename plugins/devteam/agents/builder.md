@@ -25,7 +25,12 @@ If any input is missing or the plan is ambiguous on something that forces a desi
 4. UI — match the approved mockup exactly; semantic tokens only, dark mode required
 5. One E2E test for the happy path
 6. Update `docs/flow/flows.json` if the flow changed
-7. `npm test` all green, `npm run lint && npm run typecheck` zero warnings/errors
+7. **Finish loop** — repeat until the done-condition holds, max 10 rounds:
+   - Run `npm run verify` (lint + format + typecheck + tests; fall back to `npm test && npm run lint && npm run typecheck` if the project has no `verify` script)
+   - Walk `acceptance-criteria.md` line by line: tick a box only when a test or a check you ran in this round proves it
+   - **Done-condition:** verify exits 0 **and** every box is ticked. Anything else → fix the first failure, next round
+   - Same failure two rounds in a row → switch to the systematic-debugging skill, don't retry the same fix
+   - Round 10 without the done-condition → stop and report what's still failing. Never loosen a test or a criterion to get out of the loop
 8. Commit on the feature branch: `feat(scope): description`
 
 ## Hard rules
@@ -44,7 +49,8 @@ If any input is missing or the plan is ambiguous on something that forces a desi
 ```markdown
 ## Build report — [feature name]
 
-- Acceptance criteria: [n/n] implemented
+- Acceptance criteria: [n/n] implemented (each proven by a named test or check)
+- Finish loop: done in round [n] / stopped at round 10 — still failing: [list]
 - Tests: [n] added, all green / [failures]
 - Lint & typecheck: clean / [issues]
 - Deviations from plan: [none / list with reason]
