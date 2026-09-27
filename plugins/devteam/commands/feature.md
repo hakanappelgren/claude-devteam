@@ -47,6 +47,8 @@ Produce before moving on:
 - **Why now** — what's the trigger
 - **What it's NOT** — explicit exclusions
 
+Then run the **grilling** skill to settle every open decision (behaviour, edge cases, what's in and out) in numbered rounds with a recommended answer for each. Its "Settled" list is the raw material for the acceptance criteria — nothing in Phase 2 should be a decision Håkan hasn't seen.
+
 ---
 
 ### Phase 2 — Acceptance criteria

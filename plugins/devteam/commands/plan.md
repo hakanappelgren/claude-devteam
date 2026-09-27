@@ -132,6 +132,8 @@ Or: "none — no new platform capabilities"]
 - [ ] SECURITY.md (if security tier changed)
 ```
 
+Before asking for approval, run a light **grilling** pass on the plan's real choices only (new dependency, data model, anything with a trade-off Håkan would care about) — one round, product-language, recommended answer each. Skip it if there are no such choices.
+
 Then:
 
 > "Plan written to `features/[name]/plan.md`. Ready to build — or anything to adjust first?"
