@@ -1,6 +1,6 @@
 {
   "name": "devteam",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Håkan's dev team: lead + specialist agents (researcher, designer, builder, test-writer, reviewer, doc-keeper) and the slash commands that run the gated feature process.",
   "author": { "name": "Håkan Appelgren" }
 }

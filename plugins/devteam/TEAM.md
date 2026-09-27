@@ -14,6 +14,10 @@ One lead, five specialists. The lead is the main session — it talks to Håkan,
 | **reviewer**            | opus                | Pre-merge review, fresh context                                  | Independence + judgment            |
 | **doc-keeper**          | haiku               | close-feature, handoff, flow-doc, standup                        | Mechanical doc updates             |
 
+## Process skills
+
+Agents and commands call these by name: **grilling** (settle decisions in rounds, recommended answer each), **systematic-debugging** (root cause before fix), **verification-before-completion** (no claim without a command run and read).
+
 ## Model policy
 
 Models are specified as **aliases** (`opus`, `sonnet`, `haiku`), never version strings. Roles define a capability tier; the environment supplies whatever currently fills it. If the plan/tier changes (e.g. Fable available or not), nothing here needs to change — the lead is simply "the strongest model in the main session."

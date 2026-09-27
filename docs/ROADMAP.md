@@ -22,6 +22,11 @@ _Last updated: 2026-09-27_
 ## Done
 | Feature | Shipped |
 | ------- | ------- |
+| Grilling in /feature, /explore, /plan | 2026-09-27 |
+| systematic-debugging + verification-before-completion skills | 2026-09-27 |
+| Builder finish loop (verify + acceptance criteria, max 10 rounds) | 2026-09-27 |
+| Handoff: next-session focus, point-don't-copy, redaction | 2026-09-27 |
 
 ## Changelog
+- 2026-09-27: v1.1.0 — grilling, debugging/verification skills, builder finish loop, handoff upgrades.
 - 2026-09-27: Created — team imported from research-pod (the most current copy).

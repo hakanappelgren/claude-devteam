@@ -29,4 +29,10 @@ Edit here, never in a project. Then bump `version` in `plugins/devteam/.claude-p
 open a PR, merge, and run `claude plugin marketplace update hakan-devteam` (or wait for auto-update).
 Project-specific rules belong in that project's `CLAUDE.md`, not in a fork of a command.
 
-Before adding a third-party skill, scan it: `skillspector scan <path-or-url>`.
+## Adding a third-party skill
+
+Scan it first: `skillspector scan <path-or-url> --no-llm` (installed via `uv tool`).
+The verdict is a triage signal, not a judgement — read every HIGH/CRITICAL line it points at.
+In the first scans (2026-09-27) all four DO_NOT_INSTALL flags were benign: a debugging example
+listing macOS keychains, and a plugin reading its own state file in `.claude/`. Copy only the
+files you need, and record the source and licence in `plugins/devteam/THIRD_PARTY_NOTICES.md`.
