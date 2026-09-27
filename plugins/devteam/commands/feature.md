@@ -5,7 +5,7 @@
 | Size               | Examples                          | Who does it                       | Process                              |
 | ------------------ | --------------------------------- | --------------------------------- | ------------------------------------ |
 | **Tiny**           | Typo, one-liner, config           | Lead, directly                    | Just do it — no process, no dispatch |
-| **Small**          | Bug fix, minor addition           | Lead, directly                    | Describe → fix → test → commit       |
+| **Small**          | Bug fix, minor addition           | Lead, directly                    | Describe → fix → test → commit (bugs: **systematic-debugging** skill first — root cause before any fix) |
 | **Medium / Large** | New screen, endpoint, domain area | Lead orchestrates, agents execute | Full sequence below. No skipping.    |
 
 Dispatching agents for tiny/small work is overkill — don't. The full machinery below exists for medium/large only.

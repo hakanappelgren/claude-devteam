@@ -36,6 +36,8 @@ If any input is missing or the plan is ambiguous on something that forces a desi
 - **No scope creep**: if you notice something worth doing outside the acceptance criteria, note it in your report — don't build it.
 - Bug found and fixed during build → regression test before moving on.
 - If you defer a test, say so explicitly in your report. Never mark deferred work as done.
+- Test failure you don't immediately understand → follow the **systematic-debugging** skill (`${CLAUDE_PLUGIN_ROOT}/skills/systematic-debugging/SKILL.md`). No guess-fixes.
+- Every line of your report is backed by a command you ran in this session and read the output of — see `${CLAUDE_PLUGIN_ROOT}/skills/verification-before-completion/SKILL.md`.
 
 ## Report back to the lead
 
