@@ -26,7 +26,19 @@ Commands are namespaced by the plugin: type `/devteam:feature`, `/devteam:handof
 ## Changing the team
 
 Edit here, never in a project. Then bump `version` in `plugins/devteam/.claude-plugin/plugin.json`,
-open a PR, merge, and run `claude plugin marketplace update hakan-devteam` (or wait for auto-update).
+open a PR and merge. Then refresh the local copy — updating the marketplace alone is **not**
+enough, each project keeps its installed version until it is reinstalled:
+
+```bash
+claude plugin marketplace update hakan-devteam
+for p in ~/dev/projects/active/*/; do
+  grep -q devteam@hakan-devteam "$p/.claude/settings.json" 2>/dev/null &&
+    (cd "$p" && claude plugin install devteam@hakan-devteam --scope project && git checkout -q .claude/settings.json)
+done
+```
+
+(`git checkout` undoes the key reordering the installer writes into settings.json.) Start a new
+Claude Code session afterwards — plugins load at session start.
 Project-specific rules belong in that project's `CLAUDE.md`, not in a fork of a command.
 
 ## Adding a third-party skill
