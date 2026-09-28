@@ -5,7 +5,7 @@
 | Size               | Examples                          | Who does it                       | Process                              |
 | ------------------ | --------------------------------- | --------------------------------- | ------------------------------------ |
 | **Tiny**           | Typo, one-liner, config           | Lead, directly                    | Just do it — no process, no dispatch |
-| **Small**          | Bug fix, minor addition           | Lead, directly                    | Describe → fix → test → commit       |
+| **Small**          | Bug fix, minor addition           | Lead, directly                    | Describe → fix → test → commit (bugs: **systematic-debugging** skill first — root cause before any fix) |
 | **Medium / Large** | New screen, endpoint, domain area | Lead orchestrates, agents execute | Full sequence below. No skipping.    |
 
 Dispatching agents for tiny/small work is overkill — don't. The full machinery below exists for medium/large only.
@@ -46,6 +46,8 @@ Produce before moving on:
 - **For whom** and in what situation
 - **Why now** — what's the trigger
 - **What it's NOT** — explicit exclusions
+
+Then run the **grilling** skill to settle every open decision (behaviour, edge cases, what's in and out) in numbered rounds with a recommended answer for each. Its "Settled" list is the raw material for the acceptance criteria — nothing in Phase 2 should be a decision Håkan hasn't seen.
 
 ---
 
@@ -125,7 +127,7 @@ Dispatch the **builder agent**. Its inputs — nothing else needed:
 - `docs/design/[name].html`
 - `features/[name]/research-brief.md` (if it exists)
 
-The builder follows TDD rules and build order defined in `${CLAUDE_PLUGIN_ROOT}/agents/builder.md`. It reports back: criteria coverage, test results, deviations, deferred items.
+The builder follows TDD rules and build order defined in `${CLAUDE_PLUGIN_ROOT}/agents/builder.md`, and ends with a **finish loop**: it keeps going until `npm run verify` passes and every acceptance criterion is proven, for at most 10 rounds. This is why acceptance criteria must be testable — the loop is only as good as its done-condition. It reports back: criteria coverage, test results, loop rounds, deviations, deferred items.
 
 If the builder escalates (ambiguous plan, missing input, needed dependency), the lead resolves it — with Håkan if it changes scope or architecture. Deferred tests in the report → dispatch the **test-writer agent** before review.
 

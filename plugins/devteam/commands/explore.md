@@ -67,4 +67,6 @@ When explore is done, produce this — concise, no filler:
 **What it's NOT:** [1–2 things that came up and were explicitly ruled out]
 **Still open:** [genuine unresolved questions — it's fine to have some]
 
+If "Still open" has decisions (not just unknowns), offer: "Want me to grill you on these so they're settled before `/plan`?" — then run the **grilling** skill on them.
+
 This summary is the direct input to `/plan`.
