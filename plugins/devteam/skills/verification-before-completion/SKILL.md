@@ -48,6 +48,7 @@ Skip any step = lying, not verifying
 | Regression test works | Red-green cycle verified | Test passes once |
 | Agent completed | VCS diff shows changes | Agent reports "success" |
 | Requirements met | Line-by-line checklist | Tests passing |
+| UI looks right | Screenshot of every changed screen (light + dark) that you opened and looked at | Tests passing, HTTP 200, grepping CSS for class names |
 
 ## Red Flags - STOP
 
