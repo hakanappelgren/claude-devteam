@@ -23,12 +23,13 @@ If any input is missing or the plan is ambiguous on something that forces a desi
 2. Application use-cases → test if stateful
 3. Infra adapters → test with fake dependencies
 4. UI — match the approved mockup exactly; semantic tokens only, dark mode required
-5. One E2E test for the happy path
+5. One E2E test for the happy path, plus one that fails if the stylesheet isn't applied (e.g. `body` background is not the token value) — tests otherwise pass on an unstyled page
 6. Update `docs/flow/flows.json` if the flow changed
 7. **Finish loop** — repeat until the done-condition holds, max 10 rounds:
    - Run `npm run verify` (lint + format + typecheck + tests; fall back to `npm test && npm run lint && npm run typecheck` if the project has no `verify` script)
    - Walk `acceptance-criteria.md` line by line: tick a box only when a test or a check you ran in this round proves it
-   - **Done-condition:** verify exits 0 **and** every box is ticked. Anything else → fix the first failure, next round
+   - **UI work only — visual check:** start the app against throwaway data (never the user's real data), drive every new or changed screen with a headless browser (Playwright), screenshot each one in light **and** dark mode, and **open and look at every screenshot**. Compare against the approved mockup: layout, tokens applied, action placement, empty/error states. Passing tests and HTTP 200 prove behaviour, not appearance — an unstyled page passes both
+   - **Done-condition:** verify exits 0 **and** every box is ticked **and**, for UI work, the visual check shows every screen matching the mockup. Anything else → fix the first failure, next round
    - Same failure two rounds in a row → switch to the systematic-debugging skill, don't retry the same fix
    - Round 10 without the done-condition → stop and report what's still failing. Never loosen a test or a criterion to get out of the loop
 8. Commit on the feature branch: `feat(scope): description`
