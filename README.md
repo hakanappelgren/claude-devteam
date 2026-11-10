@@ -7,7 +7,9 @@ Before this, the agents and commands were copied into each project and the copie
 
 `plugins/devteam/` — six specialist agents (researcher, designer, builder, test-writer, reviewer,
 doc-keeper), the slash commands that run the gated feature process, and the process skills they
-call. `TEAM.md` holds the rules of engagement.
+call. `TEAM.md` holds the rules of engagement. `hooks/` holds a PR check: `gh pr create` is
+blocked when code changed but `docs/ROADMAP.md` / `docs/HANDOFF.md` did not (docs-only branches and
+repos without a ROADMAP pass). Its tests: `bash tests/test-check-living-docs.sh`.
 
 ## Using it in a project
 
