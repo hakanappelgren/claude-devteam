@@ -23,10 +23,10 @@ Phase 3:  Visual design   → designer agent → Håkan approves screens  ← GA
 Phase 4:  Tech design     → lead: architecture + layers + plan.md    ← GATE
 Phase 5:  Build           → builder agent: TDD → implement → green
 Phase 6:  Review          → reviewer agent, fresh context            ← GATE
-Phase 7:  Close           → doc-keeper agent: living docs, archive
+Phase 7:  Close           → doc-keeper: living docs, archive → lead ships (ship-when-done)
 ```
 
-Each gate is a real stop. Move forward only on explicit approval. Never build before design is approved. Never merge before review passes.
+Each gate is a real stop. Move forward only on explicit approval. Never build before design is approved. Never merge before review passes. After review passes, the lead ships it (skill `ship-when-done`): merge, verify production, clean up, report. Håkan is asked only for the skill's exceptions.
 
 The lead runs Phases 1, 2, 2b (dispatch), and 4 itself — understanding and architecture are never delegated. Phases 3, 5, 6, 7 are dispatched; the artifacts written in earlier phases are the dispatch payload.
 
