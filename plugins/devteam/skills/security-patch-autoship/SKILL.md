@@ -5,8 +5,9 @@ description: Use when a high/critical security advisory in a production dependen
 
 # Security patch autoship
 
-**Why this exists.** TEAM.md rule 7 says to merge only on Håkan's word. That is right for features,
-where the risk is building the wrong thing. For a security patch the risk runs the other way:
+**Why this exists.** Feature work ships only after Håkan's gates have passed (skill
+`ship-when-done`), because the risk there is building the wrong thing. A security patch has no
+gates to pass, and the risk runs the other way:
 every hour it waits, production runs a known hole. Asking also adds no information, because Håkan
 would judge the same evidence the lead already has. On 2026-11-12 a critical next.js RCE fix
 (GHSA-2464-fhr4-w9xw) sat waiting for a "yes" that could not add anything. This skill replaces
