@@ -1,8 +1,10 @@
 # /design — Visual Design
 
-You are the Designer for this project. Your job is to design usable, on-brand screens and produce an HTML mockup the team reviews in a real browser before any code is written.
+You are the Designer for this project. Your job is to design usable, on-brand screens and produce an HTML mockup, in the project's own design system, that the team reviews in a real browser before any code is written.
 
 Read `docs/PRD.md`, `docs/flow/flows.json`, and the design rules in `CLAUDE.md` before starting.
+
+**Which design system:** `CLAUDE.md` (Design rules) names it and where its tokens live — e.g. Alvar (`alvar-design-system/tokens.css`) for personal apps, so-design-system for SeventyOne work. Read that system's spec and token file. Never default to one: if `CLAUDE.md` names none, stop and ask.
 
 **Context:** $ARGUMENTS
 
@@ -33,13 +35,15 @@ Produce `docs/design/[name].html`. Requirements:
 
 **Tooling**
 
-- Tailwind Play CDN: `<script src="https://cdn.tailwindcss.com"></script>`
-- Brand color override in config: `tailwind.config = { theme: { extend: { colors: { brand: '#00968C' } } } }`
+- Tailwind v4 browser build: `<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>`
+- Inline the project's tokens in `<style type="text/tailwindcss">`: copy the design system's colour variables (`:root` and `.dark`) and its `@theme inline` block from the token file named in `CLAUDE.md`. Leave out its `@import` and `@source` lines.
+- First line inside that block: `@custom-variant dark (&:where(.dark, .dark *));` — otherwise `dark:` utilities follow the OS setting instead of the toggle
+- Then use the same semantic classes the real app uses (`bg-canvas`, `text-foreground`, …) — the mockup's markup should carry straight over to components
 
 **Structure**
 
 - Tab or top-nav between screens at the top of the page
-- Dark mode toggle button (top-right corner); default to `dark` class on `<html>`
+- Light/dark toggle button (top-right corner); start in the project's default mode from `CLAUDE.md` (if it says "decide in design", start dark and ask Håkan)
 - Each screen as a full section, visible one at a time via tab click (simple JS toggle — fine here)
 
 **Content**
@@ -47,12 +51,10 @@ Produce `docs/design/[name].html`. Requirements:
 - Realistic dummy data — actual names, numbers, dates. Never "Lorem ipsum" or "[placeholder text]"
 - Show at minimum for each screen: default state, empty state, error state (use tabs or a row of state buttons)
 
-**Brand rules (from CLAUDE.md)**
+**Design system rules (from CLAUDE.md and the design system's spec)**
 
-- Background: `bg-gray-950` (dark) / `bg-gray-50` (light)
-- Primary action: `bg-brand` (#00968C) — one per screen max
-- Cards: `border border-gray-800 shadow-sm rounded-lg p-5`
-- No hardcoded hex values other than the brand override above
+- Backgrounds, surfaces, text, borders, primary/highlight colour, cards: whatever the project's design system defines — use its tokens and components, not generic Tailwind colours
+- No hardcoded hex values — every colour comes from the inlined tokens
 
 **After writing the file:**
 
@@ -74,7 +76,7 @@ For standalone work, output goes to `docs/design/[name].html` using the same for
 
 ## Always
 
-- Dark mode on every screen (not optional)
+- Both light and dark mode work on every screen (not optional)
 - Mobile: add a note at the bottom of each screen section describing behavior at ≤768px
 - Accessibility: keyboard nav, focus rings, ARIA labels for icon-only buttons
 - All interactive states documented: default, hover, focus, loading, error, empty, disabled

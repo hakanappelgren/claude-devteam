@@ -8,7 +8,7 @@ size: S
 
 # Roadmap — claude-devteam
 
-_Last updated: 2026-11-10_
+_Last updated: 2026-11-15_
 
 ## NOW — Active sprint
 - [ ] Migrate research-pod, workout-app, change-engine-app, playbook-portal and `_template` to the plugin
@@ -28,6 +28,7 @@ _Last updated: 2026-11-10_
 | Handoff: next-session focus, point-don't-copy, redaction | 2026-09-27 |
 | Visual check required for UI work (builder, reviewer, verification) | 2026-10-08 |
 | Living-docs PR check hook + "finished = PR open" rule | 2026-11-10 |
+| Designer uses the project's design system (Alvar / SO) instead of hardcoded SO teal | 2026-11-15 |
 | Security-patch autoship rule (TEAM.md rule 8 + skill) | 2026-11-12 |
 | Ship-when-done: lead merges finished work, verifies, cleans up | 2026-11-12 |
 
