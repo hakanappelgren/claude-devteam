@@ -11,6 +11,21 @@ call. `TEAM.md` holds the rules of engagement. `hooks/` holds a PR check: `gh pr
 blocked when code changed but `docs/ROADMAP.md` / `docs/HANDOFF.md` did not (docs-only branches and
 repos without a ROADMAP pass). Its tests: `bash tests/test-check-living-docs.sh`.
 
+## Always on — three layers (2026-11-22)
+
+The plugin used to load only when a session started inside one repo whose settings declared it,
+so multi-repo cloud sessions and older projects ran without it. Now:
+
+1. **Cloud (claude.ai app, web/desktop/phone):** the Default environment's setup script installs
+   devteam at user scope before Claude starts, in every fresh session, whichever repos are attached:
+   `claude plugin marketplace add hakanappelgren/claude-devteam && claude plugin install devteam@hakan-devteam --scope user`.
+   Other environments (e.g. `li-whisperer`) need the same script added in Settings.
+2. **Mac (VS Code, terminal, desktop app):** run that same pair of commands once in a terminal.
+   User scope means every folder, not only repos that declare it.
+3. **Each repo:** `.claude/settings.json` declares the marketplace and enables the plugin, and
+   CLAUDE.md's `## Process` section has Claude check at session start that `devteam:*` loaded and
+   say so if not. All of Håkan's repos were aligned on 2026-11-22.
+
 ## Using it in a project
 
 Add to the project's `.claude/settings.json` (the `new-project` and `sync-project` skills do this):

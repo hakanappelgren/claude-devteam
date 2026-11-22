@@ -11,7 +11,8 @@ size: S
 _Last updated: 2026-11-22_
 
 ## NOW — Active sprint
-- [ ] Migrate research-pod, workout-app, change-engine-app, playbook-portal and `_template` to the plugin
+- [ ] Fresh cloud session: confirm `devteam:*` loads from the setup script (unproven until a new container starts)
+- [ ] Decide on the local agents/commands left in change-engine-app (`.claude/agents`, kickoff-quick/full) and pulse (`.claude/commands`)
 
 ## NEXT — Queued
 
@@ -33,9 +34,11 @@ _Last updated: 2026-11-22_
 | Designer uses the project's design system (Alvar / SO) instead of hardcoded SO teal | 2026-11-15 |
 | Security-patch autoship rule (TEAM.md rule 8 + skill) | 2026-11-12 |
 | Ship-when-done: lead merges finished work, verifies, cleans up | 2026-11-12 |
+| Always-on: setup script (cloud), user scope (Mac), all 11 repos aligned | 2026-11-22 |
 | Process review; size-based gates, design alternatives, branch-per-session, one review | 2026-11-22 |
 
 ## Changelog
+- 2026-11-22: Always-on — cloud setup script installs devteam at user scope; every repo declares it and checks it loaded at session start; README documents the three layers.
 - 2026-11-22: v1.7.0 — Håkan's gates cut to idea + acceptance criteria; design gate only for large UI changes, then 3–5 alternatives; plan gate only for large work. New skill `branch-per-session` (parallel sessions branch from fresh `main`, sync before merge, HANDOFF/ROADMAP conflict rule; worktrees locally). TEAM.md rule 8: one review (reviewer agent), no CI review bot; old rule 8 is now 9. Grilling asks the verification question; plan.md slices are tracer bullets; kickoff creates `main` first. Process review in `docs/2026-11-22 process-review.md`.
 - 2026-11-22: plugin verified loading in cloud sessions since the repo went public (2026-11-20).
 - 2026-11-12: v1.5.0 — skill `ship-when-done`; TEAM.md rule 7 and /feature: after review passes and CI/preview are green, the lead merges, verifies production, cleans up and reports. Håkan's word is still needed for hard-to-undo, schedule, cost/access changes, and open choices.
