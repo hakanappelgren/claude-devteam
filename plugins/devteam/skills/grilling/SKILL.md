@@ -43,6 +43,7 @@ After each round, recompute the frontier from his answers and ask the next round
   offline but costs a day more" — not "IndexedDB vs. service-worker cache").
 - **Max 5 questions per round.** If the frontier is bigger, ask the 5 that unblock the most.
 - **"You decide" is an answer.** Take your recommendation and mark it as delegated.
+- **Always ask the verification question once:** "When this works, how would *you* check it — what would you look at, on which device?" His answer becomes the acceptance criteria's proof, and often the E2E test.
 - **Done when the frontier is empty** — every branch visited, nothing silently assumed.
 
 ## Finish

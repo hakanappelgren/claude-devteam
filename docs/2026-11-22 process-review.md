@@ -19,6 +19,15 @@ Andra insikten: **kontexten är tyngre än den behöver vara**, och det är stru
 
 ---
 
+## Beslut tagna 2026-11-22
+
+| # | Beslut | Vad det blev |
+|---|---|---|
+| 1 | Grindar | Du är med i idéfasen (den vill du ha kvar) och godkänner acceptanskriterierna. Design: ingen grind normalt — designsystemet och UX-reglerna i devteam bär det. Vid större UI-förändring: 3–5 alternativ, du väljer. Plan: lead-ansvar, din grind bara för large |
+| 2 | Review | En: reviewer-agenten. CI-boten tas bort ur workout-app och training-coach |
+| 3 | Parallella sessioner | Ja — men omformulerat efter ditt svar: inte "en gren per repo" utan **en gren per uppgift**, alltid från färsk `main`, synkad mot `main` igen innan merge. Ny skill `branch-per-session`. Cloud-sessioner är redan isolerade (egen container); lokalt i VS Code behövs en worktree per session |
+| 4 | Training-coach | `main` skapad från `gallant-bardeen` (inkl. ditt arbete efter analysen: slice 2 klar, dagdetalj + nästa vecka). Den enda commit som bara fanns på `epic-babbage` kommer in via PR #9. Vercel-projekt finns inte än — det skapas på ditt ord |
+
 ## 1. Hur det ser ut idag
 
 ### Arkitekturen (vad som är byggt)
@@ -101,7 +110,7 @@ Haiku för test-writer/doc-keeper och sonnet för builder/designer är rätt niv
 | **Två-axlig review** (Standards vs Spec, parallella subagenter) | Pocock `/code-review` | Din reviewer gör båda i ett. Delad blir den skarpare | Senare — först en review istället för två |
 | **Ubiquitous language / GLOSSARY** | Pocock `/grill-with-docs` | Du har `DOMAIN_MODEL.md`. Det är samma sak. Bra redan | Behåll |
 | **`/improve-codebase-architecture`** var några dagar | Pocock | Skulle ha fångat session.ts-dödkoden månader tidigare | **Ta in** som schemalagd uppgift |
-| **Loop engineering** — vad startar, vad är framgång, vad sparas, vad händer vid stopp | Threads-post | Builderns finish-loop (max 10 rundor) har start och framgång. Den saknar "vid stopp": vad händer på runda 10? | **Ta in** en rad i builder.md |
+| **Loop engineering** — vad startar, vad är framgång, vad sparas, vad händer vid stopp | Threads-post | Builderns finish-loop har redan alla fyra (inklusive "stoppa och rapportera på runda 10"). *Rättelse: första versionen av analysen sa att stoppregeln saknades — den finns.* | Redan på plats |
 | **Stateless harness, hållbar logg** | Anthropic Managed Agents | Bekräftar din artefaktdesign. Säger också: lita inte på containern — pusha tidigt | Redan rätt riktning |
 | **"Tänk som en expert, hur verifierar du"-prompten** | Rieseberg via Threads | Grilling-skillen gör delvis detta. Verifieringsfrågan saknas i Phase 2 | Lägg till en fråga i grilling |
 | **Design-skills** (Impeccable, UI UX Pro Max, tasteskill) | Threads | Du har Alvar, som är *din* smak. En generisk taste-skill konkurrerar med den | Testa **Impeccable** som granskningsverktyg för designer-mockups, inte som källa. Skanna med skillspector först |
@@ -148,7 +157,7 @@ Plus de två regelfrågorna i training-coach HANDOFF (low-readiness swap rule; r
 **Utan att fråga, när beslut 1–3 är tagna:**
 - Banta CLAUDE.md i båda projekten, flytta processtext till pluginet
 - Lägga `enabledPlugins: false` för icke-dev-plugins i dev-repos
-- Lägga in "vid stopp"-regeln i builder.md och verifieringsfrågan i grilling
+- Lägga in verifieringsfrågan i grilling
 - Lägga till tracer-bullet-skivor i `plan.md`-formatet
 - Skriva handoff, uppdatera ROADMAP, köra doc-keeper — redan regel, men jag gör det konsekvent
 - Dependabot och säkerhetspatchar (redan automatiserat)
@@ -170,7 +179,7 @@ Plus de två regelfrågorna i training-coach HANDOFF (low-readiness swap rule; r
 **Det committade nästa steget (en session, ~1 h):**
 1. Du tar beslut 1–4 (svara kort i chatten räcker).
 2. Jag landar training-coach (main + merge av grenarna + Vercel-koppling efter ditt ja).
-3. Jag släpper devteam v1.7.0: storleksstyrda grindar, en review, en-gren-regel, "vid stopp", tracer-bullets i plan-formatet.
+3. Jag släpper devteam v1.7.0: storleksstyrda grindar, en review, en-gren-regel, tracer-bullets i plan-formatet.
 4. Jag bantar CLAUDE.md i workout-app och training-coach och stänger av icke-dev-plugins där.
 
 **Mät efteråt (vecka 48–49):** kör `/context` i början av en dev-session före och efter steg 4. Räkna mänskliga stopp per feature. Räkna öppna `claude/*`-grenar per repo (mål: max en).
@@ -183,4 +192,5 @@ Plus de två regelfrågorna i training-coach HANDOFF (low-readiness swap rule; r
 - Agenter som plockar medium-features från ROADMAP NOW på egen hand (kräver beslut 1A och att landningen fungerar först)
 
 ## Changelog
+- 2026-11-22: Beslut 1–4 tagna och genomförda (devteam v1.7.0); rättelse om builderns stoppregel.
 - 2026-11-22: Skapad — processanalys med fyra beslut och plan.

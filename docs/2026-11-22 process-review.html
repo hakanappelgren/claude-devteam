@@ -202,6 +202,55 @@ vara</strong>, och det är strukturellt, inte en vanefråga. Varje
 dev-session bär med sig vault-regler, sälj-/juridik-/marknadsplugins och
 dubblerad processtext.</p>
 <hr />
+<h2 id="beslut-tagna-2026-11-22">Beslut tagna 2026-11-22</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Beslut</th>
+<th>Vad det blev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Grindar</td>
+<td>Du är med i idéfasen (den vill du ha kvar) och godkänner
+acceptanskriterierna. Design: ingen grind normalt — designsystemet och
+UX-reglerna i devteam bär det. Vid större UI-förändring: 3–5 alternativ,
+du väljer. Plan: lead-ansvar, din grind bara för large</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Review</td>
+<td>En: reviewer-agenten. CI-boten tas bort ur workout-app och
+training-coach</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Parallella sessioner</td>
+<td>Ja — men omformulerat efter ditt svar: inte “en gren per repo” utan
+<strong>en gren per uppgift</strong>, alltid från färsk
+<code>main</code>, synkad mot <code>main</code> igen innan merge. Ny
+skill <code>branch-per-session</code>. Cloud-sessioner är redan
+isolerade (egen container); lokalt i VS Code behövs en worktree per
+session</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Training-coach</td>
+<td><code>main</code> skapad från <code>gallant-bardeen</code> (inkl.
+ditt arbete efter analysen: slice 2 klar, dagdetalj + nästa vecka). Den
+enda commit som bara fanns på <code>epic-babbage</code> kommer in via PR
+#9. Vercel-projekt finns inte än — det skapas på ditt ord</td>
+</tr>
+</tbody>
+</table>
 <h2 id="hur-det-ser-ut-idag">1. Hur det ser ut idag</h2>
 <h3 id="arkitekturen-vad-som-är-byggt">Arkitekturen (vad som är
 byggt)</h3>
@@ -470,9 +519,10 @@ några dagar</td>
 <td><strong>Loop engineering</strong> — vad startar, vad är framgång,
 vad sparas, vad händer vid stopp</td>
 <td>Threads-post</td>
-<td>Builderns finish-loop (max 10 rundor) har start och framgång. Den
-saknar “vid stopp”: vad händer på runda 10?</td>
-<td><strong>Ta in</strong> en rad i builder.md</td>
+<td>Builderns finish-loop har redan alla fyra (inklusive “stoppa och
+rapportera på runda 10”). <em>Rättelse: första versionen av analysen sa
+att stoppregeln saknades — den finns.</em></td>
+<td>Redan på plats</td>
 </tr>
 <tr class="even">
 <td><strong>Stateless harness, hållbar logg</strong></td>
@@ -608,11 +658,10 @@ swap rule; rule 3) — de har väntat sedan 2026-11-19.</p>
 <p><strong>Utan att fråga, när beslut 1–3 är tagna:</strong> - Banta
 CLAUDE.md i båda projekten, flytta processtext till pluginet - Lägga
 <code>enabledPlugins: false</code> för icke-dev-plugins i dev-repos -
-Lägga in “vid stopp”-regeln i builder.md och verifieringsfrågan i
-grilling - Lägga till tracer-bullet-skivor i
-<code>plan.md</code>-formatet - Skriva handoff, uppdatera ROADMAP, köra
-doc-keeper — redan regel, men jag gör det konsekvent - Dependabot och
-säkerhetspatchar (redan automatiserat)</p>
+Lägga in verifieringsfrågan i grilling - Lägga till tracer-bullet-skivor
+i <code>plan.md</code>-formatet - Skriva handoff, uppdatera ROADMAP,
+köra doc-keeper — redan regel, men jag gör det konsekvent - Dependabot
+och säkerhetspatchar (redan automatiserat)</p>
 <p><strong>Som schemalagd uppgift (en gång i veckan, ny
 session):</strong> - Arkitekturhälsa per repo: döda moduler, lagerbrott,
 docs som ljuger mot koden → en kort rapport - “Beslut som väntar”:
@@ -629,9 +678,8 @@ din träningsstrategi</p>
 Du tar beslut 1–4 (svara kort i chatten räcker). 2. Jag landar
 training-coach (main + merge av grenarna + Vercel-koppling efter ditt
 ja). 3. Jag släpper devteam v1.7.0: storleksstyrda grindar, en review,
-en-gren-regel, “vid stopp”, tracer-bullets i plan-formatet. 4. Jag
-bantar CLAUDE.md i workout-app och training-coach och stänger av
-icke-dev-plugins där.</p>
+en-gren-regel, tracer-bullets i plan-formatet. 4. Jag bantar CLAUDE.md i
+workout-app och training-coach och stänger av icke-dev-plugins där.</p>
 <p><strong>Mät efteråt (vecka 48–49):</strong> kör <code>/context</code>
 i början av en dev-session före och efter steg 4. Räkna mänskliga stopp
 per feature. Räkna öppna <code>claude/*</code>-grenar per repo (mål: max
@@ -645,6 +693,8 @@ ROADMAP NOW på egen hand (kräver beslut 1A och att landningen fungerar
 först)</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li>2026-11-22: Beslut 1–4 tagna och genomförda (devteam v1.7.0);
+rättelse om builderns stoppregel.</li>
 <li>2026-11-22: Skapad — processanalys med fyra beslut och plan.</li>
 </ul>
 </body>
