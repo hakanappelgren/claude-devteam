@@ -16,8 +16,9 @@ The process gates after that (build, review, CI) exist to catch mistakes, and no
 
 ## Conditions — ALL must be true (evidence you ran yourself)
 
-1. **His gates are passed** for the work's size (see the project CLAUDE.md effort table):
-   - medium/large: acceptance criteria approved and screens approved (if there is UI)
+1. **His gates are passed** for the work's size (see the size check in `/feature`):
+   - medium: acceptance criteria approved (screens are the lead's call unless it was a large UI change)
+   - large: acceptance criteria approved, design picked (if UI), plan approved
    - small/tiny: the request itself is the approval
 
    Approval means his own words in this conversation or a recorded decision in the feature
@@ -31,6 +32,7 @@ The process gates after that (build, review, CI) exist to catch mistakes, and no
 
 ## Procedure
 
+0. **Sync first** (skill `branch-per-session`, step 3): if `origin/main` moved, merge it in, resolve the living-docs conflicts as that skill says, re-run verify + build, wait for green CI.
 1. Put the evidence for 1–7 in the PR body. Mark the PR ready and **squash-merge** with an expected head SHA. Never push to the default branch directly.
 2. **When several PRs are queued:** merge one, merge the default branch into the next, resolve
    conflicts, re-run its checks, wait for green CI, then merge it.

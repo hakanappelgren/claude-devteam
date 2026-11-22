@@ -113,9 +113,13 @@ Or: "none — no new platform capabilities"]
 **Key decisions:** [anything a future reader needs to understand]
 **ADR needed:** [yes/no — topic if yes]
 
-## First slice
+## Slices (tracer bullets)
 
-[The smallest thing that validates the approach and could ship alone]
+Thin vertical slices, each one through every layer it needs, each one merged and deployed on its own. A slice that can't be merged alone is too big or wrongly cut.
+
+1. [First slice — the smallest thing that validates the approach end to end] — depends on: nothing
+2. [Next slice] — depends on: 1
+3. …
 
 ## Tests to write first (TDD)
 
@@ -138,4 +142,4 @@ Then:
 
 > "Plan written to `features/[name]/plan.md`. Ready to build — or anything to adjust first?"
 
-No code until Håkan approves.
+No code until the plan is approved: by Håkan for large work, by the lead for medium (see /feature Phase 4).

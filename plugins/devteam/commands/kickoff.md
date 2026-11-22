@@ -13,7 +13,7 @@ Phase 1: Understand      → open-ended exploration, problem space only
 Phase 2: Acceptance      → what does v1 success look like, in testable terms?
 Phase 3: Tech discovery  → prior art + capability risks (researcher agent)
                            /spike anything unproven                ← GATE: no unproven capability enters the plan
-Phase 4: Visual design   → HTML mockup for every core screen      ← GATE: Håkan approves
+Phase 4: Visual design   → 3–5 directions, Håkan picks; then all core screens ← GATE
 Phase 5: Tech design     → stack, architecture, data model        ← GATE: Håkan approves
 Phase 6: Ready           → first feature sliced, ready to build
 ```
@@ -94,7 +94,7 @@ The acceptance criteria now name the capabilities this project depends on. Befor
 
 Dispatch the **designer agent** (or run `/design [project name]`). Output: `docs/design/overview.html`.
 
-Cover all core screens. Show: default state, empty state, error state per screen. The designer reads the research verdicts — no screen may promise a capability that research marked CONDITIONAL-unresolved or BLOCKED.
+A new product is always a large UI change: **alternatives mode** — 3–5 genuinely different directions for the core screens, Håkan picks (or mixes). Then the designer completes the chosen direction for all core screens. Show: default state, empty state, error state per screen. The designer reads the research verdicts — no screen may promise a capability that research marked CONDITIONAL-unresolved or BLOCKED.
 
 After writing: "Open `docs/design/overview.html` in your browser. Tell me what to change."
 
@@ -124,4 +124,4 @@ After approval:
 
 > "Plan approved. The first feature is [first slice from plan]. Run `/feature [first slice]` when ready."
 
-Suggest first git commit: project scaffold only, no product code yet.
+**Create the landing strip before the first feature:** the first commit (project scaffold only, no product code yet) goes to a branch named `main`, which is pushed and set as the GitHub default branch (Håkan does the last step in repo Settings → Branches if no tool can). Connect the host (e.g. Vercel) to `main` once the first slice is ready to deploy — that needs Håkan's word (it creates access and secrets). Every feature after that follows the **branch-per-session** skill. Without `main`, parallel sessions fork and nothing ships — training-coach, 2026-11.

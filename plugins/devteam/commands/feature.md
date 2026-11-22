@@ -19,14 +19,20 @@ Phase 1:  Understand      → problem statement, for whom, why now
 Phase 2:  Acceptance      → what "done" looks like in testable terms
 Phase 2b: Tech discovery  → only if new platform capabilities involved
                             researcher agent + /spike               ← GATE if triggered
-Phase 3:  Visual design   → designer agent → Håkan approves screens  ← GATE
-Phase 4:  Tech design     → lead: architecture + layers + plan.md    ← GATE
+Phase 3:  Visual design   → designer agent in the design system; lead checks it
+                            large UI change: 3–5 alternatives, Håkan picks  ← GATE (large UI only)
+Phase 4:  Tech design     → lead: architecture + layers + plan.md
+                            large only: Håkan approves the plan     ← GATE (large only)
 Phase 5:  Build           → builder agent: TDD → implement → green
 Phase 6:  Review          → reviewer agent, fresh context            ← GATE
 Phase 7:  Close           → doc-keeper: living docs, archive → lead ships (ship-when-done)
 ```
 
-Each gate is a real stop. Move forward only on explicit approval. Never build before design is approved. Never merge before review passes. After review passes, the lead ships it (skill `ship-when-done`): merge, verify production, clean up, report. Håkan is asked only for the skill's exceptions.
+**Håkan's gates (v1.7.0, his decision 2026-11-22):** he takes part in Phase 1 (bouncing the idea — keep this, it is the part he values most) and approves the acceptance criteria. He picks a design only when the UI change is large (a new screen, a changed main flow or navigation) — then from 3–5 alternatives. He approves the plan only for large work (new domain area, integration, data model change). Everything else is the lead's job, held by the design system, the reviewer and CI.
+
+Each gate that applies is a real stop. Move forward only on explicit approval. Never merge before review passes.
+
+**Before Phase 1 and before the merge:** run the **branch-per-session** skill — branch from a fresh `origin/main`, and sync with it again before merging. Håkan runs parallel sessions; this is what keeps them from forking. After review passes, the lead ships it (skill `ship-when-done`): merge, verify production, clean up, report. Håkan is asked only for the skill's exceptions.
 
 The lead runs Phases 1, 2, 2b (dispatch), and 4 itself — understanding and architecture are never delegated. Phases 3, 5, 6, 7 are dispatched; the artifacts written in earlier phases are the dispatch payload.
 
@@ -47,7 +53,7 @@ Produce before moving on:
 - **Why now** — what's the trigger
 - **What it's NOT** — explicit exclusions
 
-Then run the **grilling** skill to settle every open decision (behaviour, edge cases, what's in and out) in numbered rounds with a recommended answer for each. Its "Settled" list is the raw material for the acceptance criteria — nothing in Phase 2 should be a decision Håkan hasn't seen.
+Take time here — this is where Håkan wants to be. Then run the **grilling** skill to settle every open decision (behaviour, edge cases, what's in and out) in numbered rounds with a recommended answer for each. Its "Settled" list is the raw material for the acceptance criteria — nothing in Phase 2 should be a decision Håkan hasn't seen.
 
 ---
 
@@ -95,13 +101,12 @@ Scan the confirmed criteria: does this feature depend on a **platform capability
 
 ### Phase 3 — Visual design
 
-Dispatch the **designer agent** (or run `/design [feature name]`). It produces `docs/design/[name].html` from the confirmed acceptance criteria and the research brief if one exists.
+Dispatch the **designer agent** (or run `/design [feature name]`). It produces `docs/design/[name].html` from the confirmed acceptance criteria, the project's design system and the research brief if one exists.
 
-After it reports: "Open `docs/design/[name].html` in your browser. Tell me what to change."
+**Which mode** (the lead decides, from the criteria):
 
-Iterate until Håkan says approved. **No tech work until design is approved.**
-
----
+- **Normal (most features):** one design, in the design system, following its UX rules. No gate. The lead opens it (screenshots, light + dark), checks it against the acceptance criteria and the design system's rules, and moves on. Håkan sees the result in the PR preview and can still say "change this".
+- **Large UI change** (new screen, changed main flow or navigation, a new pattern the design system doesn't have): the designer produces **3–5 genuinely different alternatives** side by side, each with one line on what it optimises for and what it gives up, plus the designer's recommendation. Say: "Open `docs/design/[name].html` — which one, or which parts of which?" **GATE: no tech work until he picks.**
 
 ### Phase 4 — Tech design
 
@@ -114,7 +119,7 @@ The lead runs this — architecture is never delegated down. Work from the accep
 
 Write to: `features/[name]/plan.md` (see `/plan` for format — including the Capability risks section).
 
-Don't build until Håkan approves the plan.
+**Medium:** the lead approves its own plan and goes on to build; the plan is in the PR for Håkan to read. **Large** (new domain area, new integration, data model change): wait for Håkan's approval.
 
 ---
 

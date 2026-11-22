@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sv" xml:lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Byggprocessen ��� analys och plan</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style>
+  :root{--ink:#1B3540;--bg:#FAF8EE;--card:#F5F1D5;--mint:#B5D6C6;--accent:#F0845C;--teal:#00968C}
+  @media (prefers-color-scheme:dark){:root{--ink:#F5F1D5;--bg:#13262e;--card:#1B3540;--mint:#2d5a4e}}
+  body{background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,sans-serif;max-width:860px;margin:0 auto;padding:24px 16px}
+  h1{font-size:1.9rem;border-bottom:4px solid var(--accent);padding-bottom:8px}
+  h2{margin-top:2.2rem;color:var(--teal)} h3{margin-top:1.4rem}
+  table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:.92rem;margin:12px 0}
+  th{background:var(--mint);text-align:left} th,td{border:1px solid color-mix(in srgb,var(--ink) 20%,transparent);padding:6px 8px;vertical-align:top}
+  code{background:var(--card);padding:1px 5px;border-radius:4px;font-size:.9em}
+  strong{color:inherit} hr{border:0;border-top:1px solid var(--mint);margin:2rem 0}
+  </style>
+</head>
+<body>
+<h1 id="byggprocessen-analys-och-plan-2026-11-22">Byggprocessen — analys
+och plan (2026-11-22)</h1>
+<p>Underlag: <code>claude-devteam</code> (v1.6.0),
+<code>workout-app</code>, <code>training-coach</code>,
+<code>alvar-design-system</code>, git-historik, HANDOFF-filer,
+CI-flöden, och inspirationslänkarna (Matt Pococks skills, Anthropics
+Managed Agents, design-skills, “loop engineering”).</p>
+<h2 id="kärnan">Kärnan</h2>
+<p>Processen är genomtänkt och fungerar när den körs — workout-app
+2026-11-20 är ett bra exempel: kriterier → mockup → plan → builder →
+reviewer hittar en riktig bugg → fix → om-review → merge. Kvaliteten är
+inte problemet.</p>
+<p><strong>Problemet är att processen är byggd för att starta bra, inte
+för att landa.</strong> Åtta faser, fyra grindar, och flaskhalsen är du
+— men inte i design eller planering, utan i <em>att få saker till
+main</em>. Training-coach har 50 commits på tre dagar, tester gröna,
+Supabase-funktionen deployad — och <strong>ingen main-gren
+finns</strong>. Två Claude-sessioner har dessutom jobbat parallellt på
+var sin gren (<code>epic-babbage</code> och
+<code>gallant-bardeen</code>) som har glidit isär. Det är ditt
+starter-mönster, inbyggt i verktygskedjan.</p>
+<p>Andra insikten: <strong>kontexten är tyngre än den behöver
+vara</strong>, och det är strukturellt, inte en vanefråga. Varje
+dev-session bär med sig vault-regler, sälj-/juridik-/marknadsplugins och
+dubblerad processtext.</p>
+<hr />
+<h2 id="beslut-tagna-2026-11-22">Beslut tagna 2026-11-22</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Beslut</th>
+<th>Vad det blev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Grindar</td>
+<td>Du är med i idéfasen (den vill du ha kvar) och godkänner
+acceptanskriterierna. Design: ingen grind normalt — designsystemet och
+UX-reglerna i devteam bär det. Vid större UI-förändring: 3–5 alternativ,
+du väljer. Plan: lead-ansvar, din grind bara för large</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Review</td>
+<td>En: reviewer-agenten. CI-boten tas bort ur workout-app och
+training-coach</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Parallella sessioner</td>
+<td>Ja — men omformulerat efter ditt svar: inte “en gren per repo” utan
+<strong>en gren per uppgift</strong>, alltid från färsk
+<code>main</code>, synkad mot <code>main</code> igen innan merge. Ny
+skill <code>branch-per-session</code>. Cloud-sessioner är redan
+isolerade (egen container); lokalt i VS Code behövs en worktree per
+session</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Training-coach</td>
+<td><code>main</code> skapad från <code>gallant-bardeen</code> (inkl.
+ditt arbete efter analysen: slice 2 klar, dagdetalj + nästa vecka). Den
+enda commit som bara fanns på <code>epic-babbage</code> kommer in via PR
+#9. Vercel-projekt finns inte än — det skapas på ditt ord</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hur-det-ser-ut-idag">1. Hur det ser ut idag</h2>
+<h3 id="arkitekturen-vad-som-är-byggt">Arkitekturen (vad som är
+byggt)</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Del</th>
+<th>Var</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Process + roller</td>
+<td><code>claude-devteam</code>-plugin: 6 agenter, 16 kommandon, 5
+skills, 1 hook</td>
+<td>Fungerar, publik sedan 2026-11-20</td>
+</tr>
+<tr class="even">
+<td>Projektregler</td>
+<td>Varje projekts <code>CLAUDE.md</code> (14–17 KB)</td>
+<td>~6 KB av varje dubblerar pluginet</td>
+</tr>
+<tr class="odd">
+<td>Kvalitetsgrindar (maskin)</td>
+<td>Husky pre-push <code>npm run verify</code>, PreToolUse-hook
+lint+typecheck vid commit, CI, living-docs-hook vid
+<code>gh pr create</code></td>
+<td>Bra. Riktiga, inte bara text</td>
+</tr>
+<tr class="even">
+<td>Kvalitetsgrindar (människa)</td>
+<td>Kriterier, design, plan, merge (delvis automatiserat via
+ship-when-done)</td>
+<td>Fyra stopp per feature</td>
+</tr>
+<tr class="odd">
+<td>Review</td>
+<td>Opus-reviewer-agent (fresh context) <strong>+</strong> CI-bot
+(claude-code-action, fem perspektiv)</td>
+<td>Dubbelt</td>
+</tr>
+<tr class="even">
+<td>Designsystem</td>
+<td>Alvar som git-dependency</td>
+<td>Nytt, ett projekt använder det</td>
+</tr>
+<tr class="odd">
+<td>Minne mellan sessioner</td>
+<td><code>HANDOFF.md</code> (snapshot), ROADMAP, Lessons Learned</td>
+<td>Fungerar när den skrivs; driver annars</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vad-som-fungerar-riktigt-bra">Vad som fungerar riktigt bra</h3>
+<ul>
+<li><strong>Artefakter som dispatch-payload.</strong> Det är exakt rätt
+mönster — samma princip som Anthropics Managed Agents-artikel: tillstånd
+ska ligga utanför modellen, i en hållbar logg. Dina
+<code>features/[name]/</code>-mappar är det.</li>
+<li><strong>Maskinella grindar framför textregler.</strong> Hooks som
+blockerar är värda tio CLAUDE.md-stycken. Living-docs-hooken är ett bra
+exempel.</li>
+<li><strong>Reviewer i ren kontext.</strong> Den hittade en riktig
+blocker i Part A. Den ska vara kvar.</li>
+<li><strong>Lessons Learned är ärliga.</strong> “Tests prove code works,
+not that it’s wired in” är en verklig insikt som de flesta team aldrig
+skriver ner.</li>
+<li><strong>“Omöjligt är en hypotes”</strong> (researcher + spike).
+Garmin-spiken i training-coach bevisade det.</li>
+</ul>
+<hr />
+<h2 id="spänningar-strukturella-vs-beteendemässiga">2. Spänningar —
+strukturella vs beteendemässiga</h2>
+<h3 id="strukturella-verktygskedjan-skapar-dem">Strukturella
+(verktygskedjan skapar dem)</h3>
+<ol type="1">
+<li><strong>Ingen landningsbana i training-coach.</strong> Ingen
+<code>main</code>, alltså ingen Vercel-produktion, alltså ingen
+ship-when-done. Kickoff-flödet skapar inte main — det antar att den
+finns. <em>Andra ordningens effekt:</em> varje ny session gör en ny
+<code>claude/*</code>-gren från “något”, och arbetet förgrenar sig. Det
+har redan hänt.</li>
+<li><strong>Cloud-sessioner får en ny gren per session.</strong>
+<code>claude/youthful-…</code>, <code>claude/sleepy-…</code>,
+<code>claude/gallant-…</code>. I workout-app löses det av att PR:er
+mergas. I training-coach finns inget att merga till. Ju fler sessioner,
+desto mer divergens.</li>
+<li><strong>Dubbel review.</strong> Opus-reviewer-agenten och CI-boten
+granskar samma diff. CI-boten kör på din prenumeration (bra beslut
+2026-11-20), men det är fortfarande kvot, och två röster som säger olika
+saker kostar dig uppmärksamhet.</li>
+<li><strong>Processtext på tre ställen.</strong> Utvecklingssekvens,
+teamtabell, kommandotabell och effort-tabell finns i
+<code>TEAM.md</code>/<code>feature.md</code> <strong>och</strong> i
+varje projekts CLAUDE.md. När pluginet ändras (sex versioner på åtta
+veckor) ljuger projektkopiorna. Det är exakt den drift som pluginet
+skapades för att stoppa.</li>
+<li><strong>Fyra mänskliga grindar för en app med en användare.</strong>
+Rätt för training-coach (hälsodata, regler från din strategi).
+Överdimensionerat för en ny övning i workout-app.</li>
+</ol>
+<h3
+id="beteendemässiga-dina-mönster-som-processen-förstärker-eller-dämpar">Beteendemässiga
+(dina mönster, som processen förstärker eller dämpar)</h3>
+<ol type="1">
+<li><strong>Du startar parallella sessioner.</strong> Det är din styrka
+(energi, riktning) — men utan en “en aktiv gren per repo”-regel blir det
+förgrenat arbete.</li>
+<li><strong>Beslut parkeras i HANDOFF.</strong> “Waiting on Håkan:
+low-readiness swap rule” — står kvar. Din egen Lessons Learned säger
+redan: ett uppskjutet beslut behöver en aktiv knuff. Processen har
+ingen.</li>
+<li><strong>Grindarna gör dig till flaskhals på fel ställen.</strong> Du
+godkänner mockups (bra, det är där din smak behövs) och planer (sällan
+där ditt omdöme tillför mest — det är arkitektur, och den är redan
+lead-agentens ansvar).</li>
+</ol>
+<hr />
+<h2 id="tokenkostnad">3. Tokenkostnad</h2>
+<p>Jag kan inte se dina faktiska förbrukningssiffror från den här
+sessionen — det här är strukturanalys av vad som laddas. Mät med
+<code>/cost</code> och <code>/context</code> i en dev-session för att
+verifiera.</p>
+<h3 id="var-tokens-går-idag">Var tokens går idag</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Post</th>
+<th>Ungefär</th>
+<th>Varje tur?</th>
+<th>Kommentar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CLAUDE.md när flera repos är anslutna</td>
+<td>~52 KB ≈ 13k tokens</td>
+<td>Ja (cachat)</td>
+<td>I den här sessionen laddas vault-CLAUDE.md (21 KB) i en dev-analys.
+Irrelevant för kod</td>
+</tr>
+<tr class="even">
+<td>Dubblerad processtext i projekt-CLAUDE.md</td>
+<td>~6 KB ≈ 1,5k/projekt</td>
+<td>Ja</td>
+<td>Ren dubblering av pluginet</td>
+</tr>
+<tr class="odd">
+<td>Skill-listan (sales, legal, marketing, brand-voice, slack…)</td>
+<td>~100+ skills, uppskattningsvis 5–8k tokens</td>
+<td>Ja</td>
+<td>Ingen av dem används i dev</td>
+</tr>
+<tr class="even">
+<td>MCP-verktygslistor (Vercel ~300 verktyg, Gmail, Slack…)</td>
+<td>Deferred, men namnen listas</td>
+<td>Ja</td>
+<td>Mindre, men inte noll</td>
+</tr>
+<tr class="odd">
+<td>Subagent-kallstart</td>
+<td>20–60k per dispatch (web-fetch-agenten här: 54k)</td>
+<td>Per dispatch</td>
+<td>Varje agent läser om CLAUDE.md + artefakter</td>
+</tr>
+<tr class="even">
+<td>Full <code>/feature</code></td>
+<td>Lead + designer + builder (+ fixrundor) + opus-reviewer (+
+om-review) + doc-keeper + CI-bot</td>
+<td>Per feature</td>
+<td>Reviewern på opus och CI-boten är de dyraste “extra” stegen</td>
+</tr>
+</tbody>
+</table>
+<h3 id="förbättringar-i-ordning-efter-effektinsats">Förbättringar, i
+ordning efter effekt/insats</h3>
+<ol type="1">
+<li><strong>En repo per dev-session.</strong> Anslut bara det repo du
+bygger i. Tar bort vault-CLAUDE.md och de andra projektens regler.
+Störst effekt, noll kod.</li>
+<li><strong>Stäng av sälj/juridik/marknad/brand-voice-plugins i
+dev-repos</strong> via <code>enabledPlugins: { "...": false }</code> i
+projektets <code>.claude/settings.json</code>. Bara i dev — de behövs i
+vaulten.</li>
+<li><strong>Banta projekt-CLAUDE.md till projektspecifikt</strong>
+(stack, layer-regler, designregler, lessons). Ersätt processtexten med
+en rad: “Process: <code>/devteam:feature</code>, regler i pluginets
+TEAM.md.” ~40 % mindre per projekt, och ingen drift.</li>
+<li><strong>En review, inte två.</strong> Antingen opus-reviewer-agenten
+i sessionen <em>eller</em> CI-boten. Se beslut 2.</li>
+<li><strong>Storleksstyrd process</strong> (se beslut 1) — färre
+dispatches på medium-arbete är den största besparingen per feature.</li>
+<li><strong>Prompt-cachning sköts redan av Claude Code.</strong> Det som
+bryter cachen är att ändra CLAUDE.md mitt i en session — gör
+regeländringar i början eller slutet.</li>
+</ol>
+<p>Haiku för test-writer/doc-keeper och sonnet för builder/designer är
+rätt nivåer. Ändra inte dem.</p>
+<hr />
+<h2 id="agenterna-idag-och-framåt">4. Agenterna — idag och framåt</h2>
+<p><strong>Idag:</strong> en lead som orkestrerar, specialister som
+dispatchas i sekvens. Det används faktiskt (workout-app Part A/B körde
+builder + reviewer). I training-coach finns review-notes men inga
+builder-rapporter i <code>features/</code>, så det ser ut som att lead
+skrev mycket av koden själv på large-arbete — mot regel 1. Kan vara
+rimligt i en kickoff, men det är värt att veta om det var ett val.</p>
+<p><strong>Vad som saknas, och vad inspirationen pekar på:</strong></p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Idé</th>
+<th>Källa</th>
+<th>Vad det betyder för dig</th>
+<th>Rekommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Tracer-bullet-tickets</strong> — bryt spec i vertikala
+skivor med beroenden</td>
+<td>Pocock <code>/to-tickets</code></td>
+<td>Du gör redan “slices” i training-coach. Gör det explicit i
+<code>plan.md</code>: varje skiva mergas för sig</td>
+<td><strong>Ta in</strong> — det är svaret på landningsproblemet</td>
+</tr>
+<tr class="even">
+<td><strong>Två-axlig review</strong> (Standards vs Spec, parallella
+subagenter)</td>
+<td>Pocock <code>/code-review</code></td>
+<td>Din reviewer gör båda i ett. Delad blir den skarpare</td>
+<td>Senare — först en review istället för två</td>
+</tr>
+<tr class="odd">
+<td><strong>Ubiquitous language / GLOSSARY</strong></td>
+<td>Pocock <code>/grill-with-docs</code></td>
+<td>Du har <code>DOMAIN_MODEL.md</code>. Det är samma sak. Bra
+redan</td>
+<td>Behåll</td>
+</tr>
+<tr class="even">
+<td><strong><code>/improve-codebase-architecture</code></strong> var
+några dagar</td>
+<td>Pocock</td>
+<td>Skulle ha fångat session.ts-dödkoden månader tidigare</td>
+<td><strong>Ta in</strong> som schemalagd uppgift</td>
+</tr>
+<tr class="odd">
+<td><strong>Loop engineering</strong> — vad startar, vad är framgång,
+vad sparas, vad händer vid stopp</td>
+<td>Threads-post</td>
+<td>Builderns finish-loop har redan alla fyra (inklusive “stoppa och
+rapportera på runda 10”). <em>Rättelse: första versionen av analysen sa
+att stoppregeln saknades — den finns.</em></td>
+<td>Redan på plats</td>
+</tr>
+<tr class="even">
+<td><strong>Stateless harness, hållbar logg</strong></td>
+<td>Anthropic Managed Agents</td>
+<td>Bekräftar din artefaktdesign. Säger också: lita inte på containern —
+pusha tidigt</td>
+<td>Redan rätt riktning</td>
+</tr>
+<tr class="odd">
+<td><strong>“Tänk som en expert, hur verifierar
+du”-prompten</strong></td>
+<td>Rieseberg via Threads</td>
+<td>Grilling-skillen gör delvis detta. Verifieringsfrågan saknas i Phase
+2</td>
+<td>Lägg till en fråga i grilling</td>
+</tr>
+<tr class="even">
+<td><strong>Design-skills</strong> (Impeccable, UI UX Pro Max,
+tasteskill)</td>
+<td>Threads</td>
+<td>Du har Alvar, som är <em>din</em> smak. En generisk taste-skill
+konkurrerar med den</td>
+<td>Testa <strong>Impeccable</strong> som granskningsverktyg för
+designer-mockups, inte som källa. Skanna med skillspector först</td>
+</tr>
+<tr class="odd">
+<td><strong>Superpowers</strong> (obra)</td>
+<td>Threads</td>
+<td>Dina debugging/verification-skills kommer därifrån redan
+(THIRD_PARTY_NOTICES)</td>
+<td>Inget nytt</td>
+</tr>
+</tbody>
+</table>
+<p>Det du <em>inte</em> ska ta in: ett större ramverk (BMAD, Spec-Kit,
+Pococks hela pipeline). Pococks egen poäng är små, komponerbara skills —
+inte en process som äger dig. Du har redan en process. Det som saknas är
+landning, inte fler faser.</p>
+<hr />
+<h2 id="besluten-du-måste-ta">5. Besluten du måste ta</h2>
+<p>Fyra. De första två är strukturella och låser upp resten.</p>
+<h3 id="beslut-1-hur-många-mänskliga-grindar-per-storlek">Beslut 1 — Hur
+många mänskliga grindar per storlek?</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Alternativ</th>
+<th>Vad det innebär</th>
+<th>Vilka dörrar det öppnar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>A. Två grindar för medium</strong> (rekommenderas):
+kriterier+mockup i ett godkännande, sedan merge sker automatiskt via
+ship-when-done. Planen blir lead-ansvar, du ser den men den stoppar
+inte. Large behåller alla fyra</td>
+<td>Halverar dina stopp på det mesta arbetet. Du godkänner där din smak
+behövs (vad, hur det ser ut)</td>
+<td>Öppnar för att låta agenter ta medium-features från ROADMAP utan dig
+i loopen mellan godkännande och merge</td>
+</tr>
+<tr class="even">
+<td>B. Behåll fyra överallt</td>
+<td>Max kontroll, max väntan</td>
+<td>Inget nytt</td>
+</tr>
+<tr class="odd">
+<td>C. En grind (bara merge)</td>
+<td>Snabbast, men du förlorar designsmaken tidigt</td>
+<td>Risk att du granskar färdiga saker du inte ville ha</td>
+</tr>
+</tbody>
+</table>
+<h3 id="beslut-2-en-review-eller-två">Beslut 2 — En review eller
+två?</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Alternativ</th>
+<th>Konsekvens</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>A. Reviewer-agenten i sessionen, CI-boten bort</strong>
+(rekommenderas)</td>
+<td>Reviewern ser screenshots, kör tester, har artefakterna. CI-boten
+ser bara diffen. Den agenten är bättre</td>
+</tr>
+<tr class="even">
+<td>B. CI-boten kvar, agenten bort</td>
+<td>Billigare i sessionen, sämre review (ingen visuell koll, inga
+kriterier)</td>
+</tr>
+<tr class="odd">
+<td>C. CI-boten bara på PR:er som <em>inte</em> gått genom
+<code>/feature</code> (Dependabot-undantaget finns redan; manuella
+fixar)</td>
+<td>Ett skyddsnät för småfixar. Rimlig kompromiss</td>
+</tr>
+</tbody>
+</table>
+<h3 id="beslut-3-en-aktiv-gren-per-repo">Beslut 3 — En aktiv gren per
+repo?</h3>
+<p>Regel: <em>en</em> pågående gren per repo åt gången; ny session
+fortsätter på den (HANDOFF säger vilken) eller mergar först. Det är en
+beteenderegel du måste vilja — jag kan bara hålla den om du säger ja.
+Utan den kommer training-coach-förgreningen att upprepas.</p>
+<h3 id="beslut-4-training-coach-hur-landar-vi">Beslut 4 —
+Training-coach: hur landar vi?</h3>
+<p><code>epic-babbage</code> (14 commits) och
+<code>gallant-bardeen</code> (50 commits) har glidit isär. Valet är
+vilken som är sanning. Mitt förslag: <code>gallant-bardeen</code> blir
+<code>main</code> (den innehåller slice 1, engine v2, mina-pass, slice
+2), sedan granskar jag vad som bara finns på <code>epic-babbage</code>
+(verkar vara docs: workout-app-prompt, mockup, research) och plockar in
+det som saknas. Vercel kopplas till main. Det kräver ditt ja eftersom
+det sätter produktion.</p>
+<p>Plus de två regelfrågorna i training-coach HANDOFF (low-readiness
+swap rule; rule 3) — de har väntat sedan 2026-11-19.</p>
+<hr />
+<h2 id="vad-jag-kan-ta-åt-dig">6. Vad jag kan ta åt dig</h2>
+<p><strong>Utan att fråga, när beslut 1–3 är tagna:</strong> - Banta
+CLAUDE.md i båda projekten, flytta processtext till pluginet - Lägga
+<code>enabledPlugins: false</code> för icke-dev-plugins i dev-repos -
+Lägga in verifieringsfrågan i grilling - Lägga till tracer-bullet-skivor
+i <code>plan.md</code>-formatet - Skriva handoff, uppdatera ROADMAP,
+köra doc-keeper — redan regel, men jag gör det konsekvent - Dependabot
+och säkerhetspatchar (redan automatiserat)</p>
+<p><strong>Som schemalagd uppgift (en gång i veckan, ny
+session):</strong> - Arkitekturhälsa per repo: döda moduler, lagerbrott,
+docs som ljuger mot koden → en kort rapport - “Beslut som väntar”:
+skanna HANDOFF/ROADMAP efter “waiting on Håkan” äldre än 7 dagar och
+lyft dem till dig — det är den aktiva knuffen din Lessons Learned
+efterlyser</p>
+<p><strong>Det som stannar hos dig:</strong> - Vad som ska byggas och
+varför (problem, för vem) - Mockup-godkännande (din smak) - Allt som rör
+produktion första gången, pengar, åtkomst, hälsodata - Regeländringar i
+din träningsstrategi</p>
+<hr />
+<h2 id="plan">7. Plan</h2>
+<p><strong>Det committade nästa steget (en session, ~1 h):</strong> 1.
+Du tar beslut 1–4 (svara kort i chatten räcker). 2. Jag landar
+training-coach (main + merge av grenarna + Vercel-koppling efter ditt
+ja). 3. Jag släpper devteam v1.7.0: storleksstyrda grindar, en review,
+en-gren-regel, tracer-bullets i plan-formatet. 4. Jag bantar CLAUDE.md i
+workout-app och training-coach och stänger av icke-dev-plugins där.</p>
+<p><strong>Mät efteråt (vecka 48–49):</strong> kör <code>/context</code>
+i början av en dev-session före och efter steg 4. Räkna mänskliga stopp
+per feature. Räkna öppna <code>claude/*</code>-grenar per repo (mål: max
+en).</p>
+<p><strong>Dörrar som öppnas — loggas, öppnas inte nu:</strong> -
+Veckovis arkitekturhälsa som schemalagd uppgift - Två-axlig parallell
+review (Standards/Spec) - Impeccable som designgranskare för mockups -
+Plugin-evals (<code>claude plugin eval</code>) för <code>/feature</code>
+— redan i devteam LATER - Agenter som plockar medium-features från
+ROADMAP NOW på egen hand (kräver beslut 1A och att landningen fungerar
+först)</p>
+<h2 id="changelog">Changelog</h2>
+<ul>
+<li>2026-11-22: Beslut 1–4 tagna och genomförda (devteam v1.7.0);
+rättelse om builderns stoppregel.</li>
+<li>2026-11-22: Skapad — processanalys med fyra beslut och plan.</li>
+</ul>
+</body>
+</html>

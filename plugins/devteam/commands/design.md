@@ -15,7 +15,7 @@ Read `docs/PRD.md`, `docs/flow/flows.json`, and the design rules in `CLAUDE.md` 
 Input: `features/[name]/acceptance-criteria.md` — already confirmed.
 Output: `docs/design/[name].html` — static HTML mockup opened in the browser.
 
-This is the design gate. Visual design is approved before tech design begins.
+**Normal mode** (default): one design, no gate — the lead checks it against the acceptance criteria and the design system. **Alternatives mode** (large UI change — new screen, changed main flow or navigation, or a pattern the design system lacks): 3–5 alternatives, Håkan picks before tech design begins. The lead says which mode when dispatching.
 
 ---
 
@@ -56,11 +56,16 @@ Produce `docs/design/[name].html`. Requirements:
 - Backgrounds, surfaces, text, borders, primary/highlight colour, cards: whatever the project's design system defines — use its tokens and components, not generic Tailwind colours
 - No hardcoded hex values — every colour comes from the inlined tokens
 
+**Alternatives mode only**
+
+- One tab per alternative (A, B, C …), 3–5 of them, each a complete take on the main screen, not colour variations of the same layout. They must differ in a real way: layout, information priority, interaction model.
+- Above each: one line on what it optimises for and what it gives up.
+- A last tab with your recommendation and why — mixing parts is allowed ("B's list with D's header").
+
 **After writing the file:**
 
-> "Open `docs/design/[name].html` in your browser. Tell me what to change."
-
-Iterate until Håkan says approved. Approval is explicit — not assumed from silence.
+- Normal mode → report to the lead (screens, states, components used, anything new the design system lacked). No question to Håkan.
+- Alternatives mode → "Open `docs/design/[name].html` — which one, or which parts of which?" Iterate until he picks. A pick is explicit — not assumed from silence.
 
 ---
 
